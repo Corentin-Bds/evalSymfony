@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div>
+        <h3>{{ produit.nom }}</h3>
+        <p>{{ produit.description }}</p>
+        <img src="{{ asset ('assets/' ~ produit.image) }}"></img>
+        <!-- Autres informations du produit... -->
+    </div>
+
+    <div>
+        <h3>Ajouter un commentaire</h3>
+        {{ form_start(commentaireForm) }}
+            {{ form_row(commentaireForm.titre) }}
+            {{ form_row(commentaireForm.contenu) }}
+            {{ form_row(commentaireForm._token) }} {# Ajoute cette ligne pour inclure le jeton CSRF #}
+            <button type="submit">Ajouter un commentaire</button> {# Utilise un bouton de soumission personnalisé #}
+    </div>
+
+    <div>
+        <h3>Commentaires</h3>
+        {% if produit.produitCommentaire is empty %}
+            <p>Aucun commentaire pour le moment.</p>
+        {% else %}
+            <ul>
+                {% for commentaire in produit.produitCommentaire %}
+                    
+                    <li>
+                        <strong>{{ commentaire.titre }}</strong>
+                        <p>{{ commentaire.contenu }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}  

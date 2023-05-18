@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="flex justify-center flex-wrap mb-10">
+    {% for produit in liste_produits %}
+        <div class="mr-5 mt-10 text-center border p-5 rounded-lg bg-violet-900 text-white">
+            <h3 class="font-bold">{{ produit.nom }}</h3>
+            <p>{{ produit.description }}</p>
+            <img src="{{ asset ('assets/' ~ produit.image) }}" class="mt-5"></img>
+            <a href="{{ path('afficher_produit', { 'id': produit.id }) }}" class="btn mt-5">Afficher les détails</a>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

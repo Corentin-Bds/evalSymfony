@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GeneralController!{% endblock %}
+
+{% block body %}
+    <div class="ml-5">
+        <h1 class="font-bold text-3xl mt-10">Bienvenue sur le site !</h1>
+        <h2 class="text-2xl mt-5">Derniers produits ajoutés :</h2>
+    </div>
+    <div class="flex justify-center">
+    {% for produit in derniersProduits %}
+        <div class="ml-5 mt-10 text-center border p-5 rounded-lg bg-violet-900 text-white">
+            <h3 class="font-bold">{{ produit.nom }}</h3>
+            <p>{{ produit.description }}</p>
+            <img src="{{ asset ('assets/' ~ produit.image) }}" class="mt-5"></img>
+            <a href="{{ path('afficher_produit', { 'id': produit.id }) }}" class="btn mt-5">Afficher les détails</a>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
